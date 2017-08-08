@@ -3,6 +3,7 @@
 namespace App\Models\Eccube2;
 
 use App\Models\Eccube2\AbstractEccube2Model;
+use App\Models\Eccube2\DtbProductsClass as E2_DtbProductsClass;
 
 class DtbProducts extends AbstractEccube2Model
 {
@@ -22,28 +23,15 @@ class DtbProducts extends AbstractEccube2Model
         'sale_flg'               => 'integer',
     ];
 
-    public function productStatuses()
-    {
-//         $productStatuses = $this->hasMany(
-//             EloquentProductStatus::class,
-//             'product_id',
-//             'product_id'
-//         )
-//         ->where('del_flg', 0);
-
-//         return $productStatuses;
-    }
-
     public function productClasses()
     {
-//         $productClasses = $this->hasMany(
-//             EloquentProductClass::class,
-//             'product_id',
-//             'product_id'
-//         )
+        return $this->hasMany(
+            E2_DtbProductsClass::class,
+            'product_id',
+            'product_id'
+        );
 //         ->where('del_flg', 0);
 
-//         return $productClasses;
     }
 
     public function toDomain()

@@ -26,16 +26,38 @@ class ProductController extends Controller
 
     public function index()
     {
-//         $res = E2_DtbProducts::all()->count();
-//         $res = E2_DtbProductsClass::all()->count();
+//         E2_DtbProducts;
+//         E2_DtbProductsClass;
 
-//         $res = E3_DtbProduct::all()->count();
-//         $res = E3_DtbProductCategory::all()->count();
-//         $res = E3_DtbProductClass::all()->count();
-//         $res = E3_DtbProductStock::all()->count();
+//         E3_DtbProduct;
+//         E3_DtbProductCategory;
+//         E3_DtbProductClass;
+//         E3_DtbProductStock;
 
+        // 商品全体ループ
+        foreach ( E2_DtbProducts::all() as $E2_DtbProducts ) {
 
-        dd($res);
+            // dtb_product
+//             E3_DtbProduct::create([
+//                 'product_id'         => $E2_DtbProducts->product_id,
+//                 'creator_id'         => 2,
+//                 'status'             => 2,
+//                 'name'               => $E2_DtbProducts->name,
+//                 'note'               => null,
+//                 'description_list'   => $E2_DtbProducts->main_list_comment,
+//                 'description_detail' => $E2_DtbProducts->main_comment,
+// //                 'search_word'        => $E2_DtbProducts->product_id,
+// //                 'free_area'          => $E2_DtbProducts->product_id,
+//                 'del_flg'            => $E2_DtbProducts->del_flg,
+//                 'create_date'        => $E2_DtbProducts->create_date,
+//                 'update_date'        => $E2_DtbProducts->update_date,
+//             ]);
+
+            // dtb_product_class
+            foreach ( $E2_DtbProducts->productClasses()->get() as $E2_DtbProductsClass ) {
+                dd($E2_DtbProductsClass);
+            }
+        }
     }
 
 }
