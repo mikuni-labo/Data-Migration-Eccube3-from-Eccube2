@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Migration;
 
 use App\Http\Controllers\Controller;
+use App\Models\Eccube2\DtbProducts;
 
 class ProductController extends Controller
 {
@@ -18,7 +19,9 @@ class ProductController extends Controller
 
     public function index()
     {
-        dd('here');
+        $res = DtbProducts::all()->count();
+
+        dd($res);
     }
 
 }
