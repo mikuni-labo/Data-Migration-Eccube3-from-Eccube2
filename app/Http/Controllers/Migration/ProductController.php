@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Eccube2\DtbProducts as E2_DtbProducts;
 use App\Models\Eccube2\DtbProductsClass as E2_DtbProductsClass;
 
+use App\Models\Eccube3\DtbClassCategory as E3_DtbClassCategory;
+use App\Models\Eccube3\DtbClassName as E3_DtbClassName;
 use App\Models\Eccube3\DtbProduct as E3_DtbProduct;
 use App\Models\Eccube3\DtbProductCategory as E3_DtbProductCategory;
 use App\Models\Eccube3\DtbProductClass as E3_DtbProductClass;
@@ -33,6 +35,13 @@ class ProductController extends Controller
 //         E3_DtbProductCategory;
 //         E3_DtbProductClass;
 //         E3_DtbProductStock;
+
+
+//         dd( E3_DtbProductStock::truncate() );
+        dd( E3_DtbProductClass::truncate() );
+        dd( E3_DtbProduct::truncate() );
+        dd( E3_DtbClassCategory::truncate() );
+        dd( E3_DtbClassName::truncate() );
 
         // 商品全体ループ
         foreach ( E2_DtbProducts::all() as $E2_DtbProducts ) {
