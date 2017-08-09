@@ -24,7 +24,7 @@ class CustomerController extends Controller
 
     public function index()
     {
-//         dd( E3_DtbCustomer::all()->count() );
+        dd( E3_DtbCustomer::all()->count() );
         dd( E3_DtbCustomerAddress::all()->count() );
     }
 
