@@ -31,28 +31,6 @@ class ProductController extends Controller
 
     public function index()
     {
-//         E2_DtbProducts;
-//         E2_DtbProductsClass;
-
-//         E3_DtbProduct;
-//         E3_DtbProductCategory;
-//         E3_DtbProductClass;
-//         E3_DtbProductStock;
-
-
-        // truncate（外部キー考慮順）
-//         dd( E3_DtbProductStock::truncate() );
-//         dd( E3_DtbProductCategory::truncate() );
-//         dd( E3_DtbShipmentItem::truncate() );
-
-        dd( E3_DtbProductClass::truncate() );
-
-        dd( E3_DtbClassCategory::truncate() );
-        dd( E3_DtbClassName::truncate() );
-
-        dd( E3_DtbProduct::truncate() );
-
-
         // 商品全体ループ
         foreach ( E2_DtbProducts::all() as $E2_DtbProducts ) {
 
