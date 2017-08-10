@@ -8,7 +8,10 @@ class DtbProductCategory extends AbstractEccube3Model
 {
     protected $table = 'dtb_product_category';
 
-    protected $primaryKey = 'product_id';
+    protected $primaryKey = [
+        'product_id',
+        'category_id',
+    ];
 
     protected $casts = [
         'product_id'             => 'integer',

@@ -8,7 +8,10 @@ class DtbCustomerAddress extends AbstractEccube3Model
 {
     protected $table = 'dtb_customer_address';
 
-    protected $primaryKey = 'customer_address_id';
+    protected $primaryKey = [
+        'customer_id',
+        'customer_address_id',
+    ];
 
     protected $casts = [
         //
