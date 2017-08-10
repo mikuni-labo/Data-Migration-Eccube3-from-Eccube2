@@ -4,11 +4,31 @@ namespace App\Http\Controllers\Migration;
 
 use App\Http\Controllers\Controller;
 
+// E2
+use App\Models\Eccube2\DtbClass as E2_DtbClass;
+use App\Models\Eccube2\DtbClassCategory as E2_DtbClassCategory;
+
+use App\Models\Eccube2\DtbCustomer as E2_DtbCustomer;
+use App\Models\Eccube2\DtbOtherDeliv as E2_DtbOtherDeliv;
+
+use App\Models\Eccube2\DtbOrder as E2_DtbOrder;
+use App\Models\Eccube2\DtbOrderDetail as E2_DtbOrderDetail;
+
 use App\Models\Eccube2\DtbProducts as E2_DtbProducts;
 use App\Models\Eccube2\DtbProductsClass as E2_DtbProductsClass;
 
+use App\Models\Eccube2\DtbShipmentItem as E2_DtbShipmentItem;
+use App\Models\Eccube2\DtbShipping as E2_DtbShipping;
+
+// E3
 use App\Models\Eccube3\DtbClassCategory as E3_DtbClassCategory;
 use App\Models\Eccube3\DtbClassName as E3_DtbClassName;
+
+use App\Models\Eccube3\DtbCustomer as E3_DtbCustomer;
+use App\Models\Eccube3\DtbCustomerAddress as E3_DtbCustomerAddress;
+
+use App\Models\Eccube3\DtbOrder as E3_DtbOrder;
+use App\Models\Eccube3\DtbOrderDetail as E3_DtbOrderDetail;
 
 use App\Models\Eccube3\DtbProduct as E3_DtbProduct;
 use App\Models\Eccube3\DtbProductCategory as E3_DtbProductCategory;
@@ -31,6 +51,10 @@ class ProductController extends Controller
 
     public function index()
     {
+        dd( E3_DtbCustomerAddress::all()->count() );
+        dd( E2_DtbShipmentItem::where('order_id', '<', 100000)->count() );// 件数多い場合
+        dd( E2_DtbOrder::where('order_id', '<', 100000)->count() );// 件数多い場合
+
         // 商品全体ループ
         foreach ( E2_DtbProducts::all() as $E2_DtbProducts ) {
 
