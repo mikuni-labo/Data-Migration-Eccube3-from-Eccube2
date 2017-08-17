@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Migration;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Eccube2\DtbProducts as E2_DtbProducts;
-use App\Models\Eccube2\DtbProductsClass as E2_DtbProductsClass;
+// E2
+use App\Models\Eccube2\DtbCustomer as E2_DtbCustomer;
+use App\Models\Eccube2\DtbOtherDeliv as E2_DtbOtherDeliv;
 
+// E3
 use App\Models\Eccube3\DtbCustomer as E3_DtbCustomer;
 use App\Models\Eccube3\DtbCustomerAddress as E3_DtbCustomerAddress;
 
