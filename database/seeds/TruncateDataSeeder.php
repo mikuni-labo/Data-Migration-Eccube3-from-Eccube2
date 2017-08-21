@@ -31,8 +31,8 @@ class TruncateDataSeeder extends Seeder
         E3_DtbCustomerAddress::truncate();
 
         // 商品関連
-        E3_DtbProductClass::truncate();
-        E3_DtbProduct::truncate();
+//         E3_DtbProductClass::truncate();
+//         E3_DtbProduct::truncate();
         E3_DtbProductStock::truncate();
         E3_DtbProductCategory::truncate();
 //         E3_DtbClassCategory::truncate();
