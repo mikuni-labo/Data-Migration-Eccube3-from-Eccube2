@@ -9,12 +9,6 @@ class DtbOrderDetail extends AbstractEccube2Model
 {
     protected $table = 'dtb_order_detail';
 
-    protected $primaryKey = [
-//         'order_detail_id',
-//         'order_id',
-//         'product_class_id',
-    ];
-
     protected $casts = [
         //
     ];

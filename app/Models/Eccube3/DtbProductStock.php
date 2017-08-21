@@ -8,18 +8,10 @@ class DtbProductStock extends AbstractEccube3Model
 {
     protected $table = 'dtb_product_stock';
 
-    protected $primaryKey = 'product_class_id';
+    protected $primaryKey = 'product_stock_id';
 
     protected $casts = [
-        'product_id'             => 'integer',
-        'maker_id'               => 'integer',
-        'status'                 => 'integer',
-        'del_flg'                => 'integer',
-        'creator_id'             => 'integer',
-        'deliv_date_id'          => 'integer',
-        'plg_freeshipping_flg'   => 'integer',
-        'plg_productoptions_flg' => 'integer',
-        'sale_flg'               => 'integer',
+        //
     ];
 
 }

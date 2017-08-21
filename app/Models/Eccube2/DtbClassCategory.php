@@ -9,7 +9,7 @@ class DtbClassCategory extends AbstractEccube2Model
 {
     protected $table = 'dtb_classcategory';
 
-    protected $primaryKey = 'class_id';
+    protected $primaryKey = 'classcategory_id';
 
     protected $casts = [
         //

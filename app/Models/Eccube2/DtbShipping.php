@@ -9,11 +9,6 @@ class DtbShipping extends AbstractEccube2Model
 {
     protected $table = 'dtb_shipping';
 
-    protected $primaryKey = [
-//         'shipping_id',
-//         'order_id',
-    ];
-
     protected $casts = [
         //
     ];
