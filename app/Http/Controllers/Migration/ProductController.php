@@ -29,7 +29,9 @@ class ProductController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+//         $this->middleware('guest');
+
+        ini_set('max_execution_time', 3600);
     }
 
     public function index()

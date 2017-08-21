@@ -13,6 +13,8 @@ class Controller extends BaseController
 
     public function welcome()
     {
+        dd(phpinfo());
+
         return view('welcome');
     }
 }
