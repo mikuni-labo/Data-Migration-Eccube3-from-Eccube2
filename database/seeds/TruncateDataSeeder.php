@@ -5,6 +5,7 @@ use App\Models\Eccube3\DtbClassName as E3_DtbClassName;
 use App\Models\Eccube3\DtbCustomer as E3_DtbCustomer;
 use App\Models\Eccube3\DtbCustomerAddress as E3_DtbCustomerAddress;
 use App\Models\Eccube3\DtbOrder as E3_DtbOrder;
+use App\Models\Eccube3\DtbOrderDetail as E3_DtbOrderDetail;
 use App\Models\Eccube3\DtbProduct as E3_DtbProduct;
 use App\Models\Eccube3\DtbProductCategory as E3_DtbProductCategory;
 use App\Models\Eccube3\DtbProductClass as E3_DtbProductClass;
@@ -30,15 +31,17 @@ class TruncateDataSeeder extends Seeder
         E3_DtbCustomerAddress::truncate();
 
         // 商品関連
+//         E3_DtbProductClass::truncate();
+//         E3_DtbProduct::truncate();
         E3_DtbProductStock::truncate();
         E3_DtbProductCategory::truncate();
-        E3_DtbProductClass::truncate();
-        E3_DtbProduct::truncate();
-        E3_DtbClassCategory::truncate();
-        E3_DtbClassName::truncate();
+//         E3_DtbClassCategory::truncate();
+//         E3_DtbClassName::truncate();
+
 
         // 受注関連
         E3_DtbOrder::truncate();
+        E3_DtbOrderDetail::truncate();
         E3_DtbShipping::truncate();
         E3_DtbShipmentItem::truncate();
 
