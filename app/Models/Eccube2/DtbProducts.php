@@ -17,12 +17,7 @@ class DtbProducts extends AbstractEccube2Model
 
     public function productClasses()
     {
-        return $this->hasMany(
-            E2_DtbProductsClass::class,
-            'product_id',
-            'product_id'
-        );
-
+        return $this->hasMany(E2_DtbProductsClass::class, 'product_id', 'product_id');
     }
 
 }
