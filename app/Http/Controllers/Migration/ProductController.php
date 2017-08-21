@@ -34,30 +34,61 @@ class ProductController extends Controller
 
     public function index()
     {
-//         dd( E3_DtbCustomerAddress::all()->count() );
-//         dd( E2_DtbShipmentItem::where('order_id', '<', 100000)->count() );// 件数多い場合
-//         dd( E2_DtbOrder::where('order_id', '<', 100000)->count() );// 件数多い場合
+        // 規格大分類
+//         foreach ( E2_DtbClass::all() as $E2_DtbClass ) {
+//             E3_DtbClassName::create([
+//                 'class_name_id' => $E2_DtbClass->class_id,
+//                 'name'          => $E2_DtbClass->name,
+//                 'rank'          => $E2_DtbClass->rank,
+//                 'creator_id'    => $E2_DtbClass->creator_id,
+//                 'create_date'   => $E2_DtbClass->create_date,
+//                 'update_date'   => $E2_DtbClass->update_date,
+//                 'del_flg'       => $E2_DtbClass->del_flg,
+//             ]);
+//         }
 
-        // 商品全体ループ
+        // 規格小分類
+//         foreach ( E2_DtbClassCategory::all() as $E2_DtbClassCategory ) {
+//             E3_DtbClassCategory::create([
+//                 'class_category_id' => $E2_DtbClassCategory->classcategory_id,
+//                 'name'              => $E2_DtbClassCategory->name,
+//                 'class_name_id'     => $E2_DtbClassCategory->class_id,
+//                 'rank'              => $E2_DtbClassCategory->rank,
+//                 'creator_id'        => 2,
+//                 'create_date'       => $E2_DtbClassCategory->create_date,
+//                 'update_date'       => $E2_DtbClassCategory->update_date,
+//                 'del_flg'           => $E2_DtbClassCategory->del_flg,
+//             ]);
+//         }
+
+        dd('here');
+
+        // 商品
         foreach ( E2_DtbProducts::all() as $E2_DtbProducts ) {
 
             E3_DtbProduct::create([
                 'product_id'         => $E2_DtbProducts->product_id,
-                'creator_id'         => 2,
-                'status'             => 2,
                 'name'               => $E2_DtbProducts->name,
+                'status'             => $E2_DtbProducts->status,
                 'note'               => null,
-                'description_list'   => $E2_DtbProducts->main_list_comment,
-                'description_detail' => $E2_DtbProducts->main_comment,
-                'search_word'        => $E2_DtbProducts->product_id,
-                'free_area'          => $E2_DtbProducts->product_id,
+                'description_list'   => null,
+                'description_detail' => null,
                 'del_flg'            => $E2_DtbProducts->del_flg,
+                'creator_id'         => $E2_DtbProducts->creator_id,
                 'create_date'        => $E2_DtbProducts->create_date,
                 'update_date'        => $E2_DtbProducts->update_date,
+                'search_word'        => null,
+                'free_area'          => null,
             ]);
 
+            // $E2_DtbProducts->deliv_date_id を 規格のdelivery_date_idへ
+
+            // 商品規格
             foreach ( $E2_DtbProducts->productClasses()->get() as $E2_DtbProductsClass ) {
-                dd($E2_DtbProductsClass);
+                E3_DtbProductClass::create([
+                    'product_class_id' => $E2_DtbProductsClass->product_class_id,
+                    'product_id'       => $E2_DtbProductsClass->product_id,
+                ]);
             }
         }
     }
