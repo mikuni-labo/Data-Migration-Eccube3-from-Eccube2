@@ -80,41 +80,42 @@ class ProductController extends Controller
 //                 'search_word'        => null,
 //                 'free_area'          => null,
 //             ]);
-
-//             // 商品規格
-//             foreach ( $E2_DtbProducts->productClasses()->get() as $E2_DtbProductsClass ) {
-//                 if( ! $E2_DtbProductsClass->classcategory_id1 || ! $E2_DtbProductsClass->classcategory_id2 ) continue;
-
-//                 E3_DtbProductClass::create([
-//                     'product_class_id'   => $E2_DtbProductsClass->product_class_id,
-//                     'product_id'         => $E2_DtbProductsClass->product_id,
-//                     'class_category_id1' => $E2_DtbProductsClass->classcategory_id1,
-//                     'class_category_id2' => $E2_DtbProductsClass->classcategory_id2,
-//                     'product_type_id'    => $E2_DtbProductsClass->product_type_id,
-//                     'product_code'       => $E2_DtbProductsClass->product_code,
-//                     'stock'              => $E2_DtbProductsClass->stock,
-//                     'stock_unlimited'    => $E2_DtbProductsClass->stock_unlimited,
-//                     'sale_limit'         => $E2_DtbProductsClass->sale_limit,
-//                     'price01'            => $E2_DtbProductsClass->price01,
-//                     'price02'            => $E2_DtbProductsClass->price02,
-//                     'delivery_fee'       => $E2_DtbProductsClass->deliv_fee,
-//                     'creator_id'         => 2,
-//                     'create_date'        => $E2_DtbProductsClass->create_date,
-//                     'update_date'        => $E2_DtbProductsClass->update_date,
-//                     'del_flg'            => $E2_DtbProductsClass->del_flg,
-//                     'delivery_date_id'   => $E2_DtbProducts->deliv_date_id,// 商品テーブルから
-//                 ]);
-//             }
 //         }
 
-        // 商品カテゴリ
-        foreach ( E2_DtbProducts::all() as $E2_DtbProducts ) {
-            E3_DtbProductCategory::create([
-                'product_id'  => $E2_DtbProducts->product_id,
-                'category_id' => 171,
-                'rank'        => 1,
+        // 商品規格
+//         foreach ( $E2_DtbProducts->productClasses()->get() as $E2_DtbProductsClass ) {
+//             if( ! $E2_DtbProductsClass->classcategory_id1 || ! $E2_DtbProductsClass->classcategory_id2 ) continue;
+
+        foreach ( E2_DtbProductsClass::all() as $E2_DtbProductsClass ) {
+            E3_DtbProductClass::create([
+                'product_class_id'   => $E2_DtbProductsClass->product_class_id,
+                'product_id'         => $E2_DtbProductsClass->product_id,
+                'class_category_id1' => $E2_DtbProductsClass->classcategory_id1 ? $E2_DtbProductsClass->classcategory_id1 : null,
+                'class_category_id2' => $E2_DtbProductsClass->classcategory_id2 ? $E2_DtbProductsClass->classcategory_id2 : null,
+                'product_type_id'    => $E2_DtbProductsClass->product_type_id,
+                'product_code'       => $E2_DtbProductsClass->product_code,
+                'stock'              => $E2_DtbProductsClass->stock,
+                'stock_unlimited'    => $E2_DtbProductsClass->stock_unlimited,
+                'sale_limit'         => $E2_DtbProductsClass->sale_limit,
+                'price01'            => $E2_DtbProductsClass->price01,
+                'price02'            => $E2_DtbProductsClass->price02,
+                'delivery_fee'       => $E2_DtbProductsClass->deliv_fee,
+                'creator_id'         => 2,
+                'create_date'        => $E2_DtbProductsClass->create_date,
+                'update_date'        => $E2_DtbProductsClass->update_date,
+                'del_flg'            => $E2_DtbProductsClass->del_flg,
+                'delivery_date_id'   => $E2_DtbProductsClass->product()->first()->deliv_date_id,// 商品テーブルから
             ]);
         }
+
+        // 商品カテゴリ
+//         foreach ( E2_DtbProducts::all() as $E2_DtbProducts ) {
+//             E3_DtbProductCategory::create([
+//                 'product_id'  => $E2_DtbProducts->product_id,
+//                 'category_id' => 171,
+//                 'rank'        => 1,
+//             ]);
+//         }
 
         dd('end');
     }
