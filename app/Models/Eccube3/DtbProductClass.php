@@ -11,7 +11,7 @@ class DtbProductClass extends AbstractEccube3Model
     protected $primaryKey = 'product_class_id';
 
     protected $casts = [
-        //
+        'del_flg' => 'boolean',
     ];
 
 }
