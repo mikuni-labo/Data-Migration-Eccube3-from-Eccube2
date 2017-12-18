@@ -13,6 +13,6 @@
 
 Route::get('/',         'Controller@welcome');
 
-Route::get('/product',  'Migration\ProductController@index');
-Route::get('/customer', 'Migration\CustomerController@index');
-Route::get('/order',    'Migration\OrderController@index');
+Route::get('product',   'Migration\ProductController@index');
+Route::get('customer',  'Migration\CustomerController@index');
+Route::get('order',     'Migration\OrderController@index');
