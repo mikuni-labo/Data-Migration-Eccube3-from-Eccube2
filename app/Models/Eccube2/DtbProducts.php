@@ -2,7 +2,6 @@
 
 namespace App\Models\Eccube2;
 
-use App\Models\Eccube2\AbstractEccube2Model;
 use App\Models\Eccube2\DtbProductsClass as E2_DtbProductsClass;
 
 class DtbProducts extends AbstractEccube2Model

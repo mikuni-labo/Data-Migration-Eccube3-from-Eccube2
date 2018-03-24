@@ -2,8 +2,6 @@
 
 namespace App\Models\Eccube3;
 
-use App\Models\Eccube3\AbstractEccube3Model;
-
 class DtbOrderDetail extends AbstractEccube3Model
 {
     protected $table = 'dtb_order_detail';
