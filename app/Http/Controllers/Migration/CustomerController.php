@@ -38,8 +38,31 @@ class CustomerController extends Controller
 
         $now = \Carbon\Carbon::now();
 
-        /*
         // 会員
+//         $this->migrateCustomer();
+
+        // 会員の他のお届け先
+//         $this->migrateOtherDeliv();
+
+        // 会員メイン登録住所追加
+//         $this->migrateDefaultDeliv();
+
+        // 会員デフォルト住所入れ替え
+        $this->convertDefaultDeliv();
+
+        // メルマガフラグ
+//         $this->migrateMailmagaFlag();
+
+        dd('fin.');
+    }
+
+    /**
+     * 会員
+     *
+     * @return void
+     */
+    private function migrateCustomer()
+    {
         foreach (E2_DtbCustomer::all()->chunk(self::CHUNK_NUM) as $chunk) {
 
             $Collection = collect([]);
@@ -96,7 +119,7 @@ class CustomerController extends Controller
                     'create_date'       => $E2_DtbCustomer->create_date == '0000-00-00 00:00:00' ? $now : $E2_DtbCustomer->create_date,
                     'update_date'       => $E2_DtbCustomer->update_date == '0000-00-00 00:00:00' ? $now : $E2_DtbCustomer->update_date,
                     'del_flg'           => $E2_DtbCustomer->del_flg,
-                ]);
+                    ]);
             }
 
             // insert
@@ -104,12 +127,15 @@ class CustomerController extends Controller
                 \DB::connection('mysql_eccube3')->table('dtb_customer')->insert($chunk->toArray());
             }
         }
+    }
 
-        dd('fin.');
-        */
-
-        /*
-        // 会員の他のお届け先
+    /**
+     * 会員の他のお届け先
+     *
+     * @return void
+     */
+    private function migrateOtherDeliv()
+    {
         foreach (E2_DtbOtherDeliv::all()->chunk(self::CHUNK_NUM) as $chunk) {
 
             $Collection = collect([]);
@@ -156,11 +182,95 @@ class CustomerController extends Controller
                 \DB::connection('mysql_eccube3')->table('dtb_customer_address')->insert($chunk->toArray());
             }
         }
+    }
 
-        dd('fin.');
-        */
+    /**
+     * 会員メイン登録住所追加
+     *
+     * @return void
+     */
+    private function migrateDefaultDeliv()
+    {
+        foreach (E2_DtbCustomer::all()->chunk(self::CHUNK_NUM) as $chunk) {
 
-        // メルマガフラグ
+            $Collection = collect([]);
+
+            foreach ($chunk as $E2_DtbCustomer) {
+                $Collection->push([
+                    'customer_id'       => $E2_DtbCustomer->customer_id,
+
+                    'name01'            => $E2_DtbCustomer->name01,
+                    'name02'            => $E2_DtbCustomer->name02,
+
+                    'kana01'            => $E2_DtbCustomer->kana01,
+                    'kana02'            => $E2_DtbCustomer->kana02,
+
+                    'company_name'      => $E2_DtbCustomer->company_name,
+
+                    'zip01'             => $E2_DtbCustomer->zip01,
+                    'zip02'             => $E2_DtbCustomer->zip02,
+                    'zipcode'           => $E2_DtbCustomer->zipcode,
+
+                    'country_id'        => $E2_DtbCustomer->country_id,
+
+                    'pref'              => $E2_DtbCustomer->pref,
+                    'addr01'            => $E2_DtbCustomer->addr01,
+                    'addr02'            => $E2_DtbCustomer->addr02,
+
+                    'tel01'             => $E2_DtbCustomer->tel01,
+                    'tel02'             => $E2_DtbCustomer->tel02,
+                    'tel03'             => $E2_DtbCustomer->tel03,
+
+                    'fax01'             => $E2_DtbCustomer->fax01,
+                    'fax02'             => $E2_DtbCustomer->fax02,
+                    'fax03'             => $E2_DtbCustomer->fax03,
+
+                    'create_date'       => $now,
+                    'update_date'       => $now,
+                    'del_flg'           => 0,
+                ]);
+            }
+
+            // insert
+            foreach ($Collection->chunk(self::CHUNK_NUM) as $chunk) {
+                \DB::connection('mysql_eccube3')->table('dtb_customer_address')->insert($chunk->toArray());
+            }
+        }
+    }
+
+    /**
+     * 会員デフォルト住所入れ替え
+     *
+     * @return void
+     */
+    private function convertDefaultDeliv()
+    {
+        foreach (E3_DtbCustomerAddress::all()->groupBy('customer_id')->chunk(self::CHUNK_NUM) as $chunk) {
+
+            foreach ($chunk as $key => $group) {
+                if ($group->count() < 2) continue;
+
+                $group = $group->sortBy('customer_address_id');
+
+                $low = $group->first();
+                $high = $group->last();
+
+                $lowArr = $low->toArray();
+                $highArr = $high->toArray();
+
+                $low->update($highArr);// 更新項目はモデルの$fillableプロパティ参照
+                $high->update($lowArr);// 更新項目はモデルの$fillableプロパティ参照
+            }
+        }
+    }
+
+    /**
+     * メルマガフラグ
+     *
+     * @return void
+     */
+    private function migrateMailmagaFlag()
+    {
         foreach (E2_DtbCustomer::all()->chunk(self::CHUNK_NUM) as $chunk) {
 
             $Collection = collect([]);
@@ -180,8 +290,6 @@ class CustomerController extends Controller
                 \DB::connection('mysql_eccube3')->table('plg_mailmaga_customer')->insert($chunk->toArray());
             }
         }
-
-        dd('fin.');
     }
 
 }

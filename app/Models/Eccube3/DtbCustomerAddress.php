@@ -12,4 +12,26 @@ class DtbCustomerAddress extends AbstractEccube3Model
         //
     ];
 
+    protected $fillable = [
+        'name01',
+        'name02',
+        'kana01',
+        'kana02',
+        'company_name',
+        'zip01',
+        'zip02',
+        'zipcode',
+        'country_id',
+        'pref',
+        'addr01',
+        'addr02',
+        'tel01',
+        'tel02',
+        'tel03',
+        'fax01',
+        'fax02',
+        'fax03',
+        'del_flg',
+    ];
+
 }
